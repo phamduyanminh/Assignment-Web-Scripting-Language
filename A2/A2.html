@@ -12,15 +12,18 @@
     <img src="images/spaceship.png" id="spaceship1" class="spaceship" draggable = "false">
 
     <script>
-      //Solution is 15 lines of code.  The instructions make it look like a longer assingment than it really it is.
+    //Solution is 15 lines of code.  The instructions make it look like a longer assingment than it really it is.
 
-      //Event handler setup
-      //1. Create an event handler on the window object for the load event 
-      
+    //Event handler setup
+    //1. Create an event handler on the window object for the load event 
+    window.onload = (event) => {
+      console.log('Page is loaded');
+    }
 
-      //2. Create an event handler on the window object for the mousemove event  
 
-        //3. Inside of the callback function of this event handler, create offset distances for X and Y from the mouse
+    //2. Create an event handler on the window object for the mousemove event  
+
+    //3. Inside of the callback function of this event handler, create offset distances for X and Y from the mouse
     
     //Move the spaceship towards the mouse 
     //4. Get the image element & store it in a variable 
@@ -37,10 +40,10 @@
     //9. Concatenate the pixel unit to your calculation. Ex. + 'px';
       
   
-  //Move the alien away from the cursor when the cursor is moved close to the alien image.
-  //10. Get the image element & store it in a variable 
+    //Move the alien away from the cursor when the cursor is moved close to the alien image.
+    //10. Get the image element & store it in a variable 
 
-  //11. Get browser's current width & height to set a horizontal limit for the alien image & store in variables.
+    //11. Get browser's current width & height to set a horizontal limit for the alien image & store in variables.
 
 
     //12. Attach an event handler to the alien image for the mouseover event
