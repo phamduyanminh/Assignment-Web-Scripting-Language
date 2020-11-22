@@ -66,7 +66,11 @@
 
         window.addEventListener(
           "mouseover",
-          event =>
+          event =>{
+            alien.draggable = true;
+            alien.style.left = parseInt(Math.random() * 1000) + "px";
+            alien.style.top = parseInt(Math.random() * 1000) + "px";
+          }
         )
       }
 
