@@ -17,7 +17,6 @@
     //Event handler setup
     //1. Create an event handler on the window object for the load event 
     //2. Create an event handler on the window object for the mousemove event  
-    
 
     //3. Inside of the callback function of this event handler, create offset distances for X and Y from the mouse
     //Move the spaceship towards the mouse 
@@ -40,11 +39,19 @@
 
     //11. Get browser's current width & height to set a horizontal limit for the alien image & store in variables.
 
-
     //12. Attach an event handler to the alien image for the mouseover event
     //13. Use the target property of the event object to change the coordinates. Ex. event.target.style.left = your coordinates calculation (again refer to steps 8 & 9)
     //14. Your coordinates calculation requires the variables created in step 11.
 
+      window.onload = (event) =>{
+        window.addEventListener(
+          "mousemove",
+          event =>
+          {
+            
+          }
+        )
+      }
 
     </script>
   </body>
