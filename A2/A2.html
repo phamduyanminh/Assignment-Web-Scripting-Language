@@ -13,44 +13,16 @@
 
     <script>
     //Solution is 15 lines of code.  The instructions make it look like a longer assingment than it really it is.
-    var cursorX, cursorY, imageX, imageY, distanceX, distanceY;
-    var spaceship = document.getElementById("spaceship1"); //4
 
     //Event handler setup
     //1. Create an event handler on the window object for the load event 
-    window.onclick = (event) => {
-      console.log('Page is loaded');
-      cursorX = event.clientX;
-      cursorY = event.clientY;
-      distanceX = cursorX - imageX;
-      distanceY = cursorY - imageY;
-    }
-
-
     //2. Create an event handler on the window object for the mousemove event  
-    window.addEventListener(
-      "mousemove",
-      event => calculateDistance(event)
-    )
+    
 
     //3. Inside of the callback function of this event handler, create offset distances for X and Y from the mouse
-    function calculateDistance(event){
-      cursorX = event.clientX;
-      cursorY = event.clientY;
-
-      imageX = spaceship.offsetTop;
-      imageY = spaceship.offsetLeft;
-
-      updateImgPosition();
-    }
-    
     //Move the spaceship towards the mouse 
     //4. Get the image element & store it in a variable 
     //5. move the image by setting the coordinates of left & top refer to slide .  Ex. node.style.left = your coordinates calculation here. 
-    function updateImgPosition(){
-      spaceship.style.left = cursorX - distanceX + "px";
-      spaceship.style.top = cursorY - distanceY + "px";
-    }
     //Note node is the variable name you stored your image element in.
     //Note the left & top properties track the x & y coordinates respectively & must be set seperately.
     
