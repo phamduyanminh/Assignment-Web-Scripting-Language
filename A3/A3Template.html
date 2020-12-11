@@ -46,7 +46,8 @@ function initApp(){
     var btnSubmitText = btnSubmit.textContent;
 
     //1. Cache tbody, h3 & h3 text selectors: See Ex 9.1
-
+    var h3Obj;
+    var tbodyObj;
 
     var url = "http://babanski.com/files/ajax/book_signing_event.json";
 
@@ -56,7 +57,7 @@ function initApp(){
     // Create function triggered by each state change event 
     xhr.onreadystatechange = function (evt) { 
         //2. Create variable to store all the rows data for <tbody> & initialize it to an empty string. 
-        var tbodyObj = document.getElementsByTagName("tbody")[0];
+        tbodyObj = document.getElementsByTagName("tbody")[0];
 
         //If server connection established -> ready state = OPENED
         if (this.readyState == XMLHttpRequest.OPENED) {
@@ -65,6 +66,7 @@ function initApp(){
             //4. Reset text to an empty string inside <tbody> 
             //5. Reset header to default text
             btnSubmit.textContent = "Please Wait!";
+            h3Obj = document.getElementsByTagName("h3")[0];
             tbodyObj = "";
             
         } //If request finished & response ready -> ready state = DONE
@@ -79,29 +81,47 @@ function initApp(){
         
                     if (data.section.title) { //Check title exists
                         //6. Change h3 header text to title from JSON
-                        document.getElementsByTagName("h3")[0].textContent = data.section.title;
+                        h3Obj.textContent = data.section.title;
                     }
 
                     //7. In rows variable, store rows data in table format
                     //Note: Requires concatenating table HTML tags to the JSON data to create each row & cell.
                     // Slow loop: .forEach - do not use
                     // Fastest loop: for(...)
+                    for (var i = 0; i < data.section.signing.length; i++){
+                        var jstr = document.createElement('tr');
+                        
+                        var jstdAuthor = document.createElement('td');
+                        jstdAuthor.innerHTML = data.section.signing[i].author.title + data.section.signing[i].author.name;
+
+                        var jstdBook = document.createElement('td');
+                        jstdBook.innerHTML = data.section.signing[i].book.title;
+
+                        var jstdPrice = document.createElement('td');
+                        jstdPrice.innerHTML = data.section.signing[i].book.price;
+
+                        jstr.appendChild(jstdAuthor);
+                        jstr.appendChild(jstdBook);
+                        jstr.appendChild(jstdPrice);
+
+                        tbodyObj.appendChild(jstr);
+                    };
                     
                } // This ends the "if (data.section)".
                else {
-                   //8. (else) If not able to parse data -> show "Error: Incorrect input received from the server!" error message.
-                   
+                    //8. (else) If not able to parse data -> show "Error: Incorrect input received from the server!" error message.
+                    alert("Error: Incorrect input received from the server!");
                }
             } // This ends the "if (this.status == 200)"
             //9. (else) If server returns 404 or 500 or 30X status code: means we didn't get the file. then display error message "Error: Cannot connect to the server!"
             // This is equivalent to both error & timeout events.
             else { 
-                
+                alert("Error: Cannot connect to the server!");
             }
             //10. Display rows data to the table
-            
+
             //11. Change button text to concatenate "Re-" to the existing text to display "Re-Load Data". Similar to Ex 9.1
-            
+            btnSubmit.textContent = "Re-Load Data";
         } // This ends the else if (this.readyState == XMLHttpRequest.DONE) 
     }; // This ends the onreadystatechange event handler
 
